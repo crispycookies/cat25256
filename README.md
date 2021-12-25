@@ -1,5 +1,13 @@
 # OnSemi CAT25256-Series Driver
 
+### What it is
+
+This is a generic driver for the CAT25256-EEPROM. It can be used with any microcontroller, or even operating system. 
+
+It provides an abstraction to the system-depended SPI-drivers and thus can be used on STM32s, NXP-controllers and others alike.
+
+All you need to do is to set the ``read``, ``write``, ``cs_enable`` and  ``cs_disable`` callbacks to some to your system-depended SPI-driver-functions as seen in the next chapter. 
+
 ### How to use
 
 * Declare a config struct of type ``cat25256_handle_t``.
@@ -28,6 +36,9 @@
   }
   
   memory_status_t cs_enable(void *handle, size_t cs) {
+      /**
+       * cs simply is the chip-select pin. e.g. pin 0,1,2,3,4,16 etc.
+       **/
       SPI_Init_Struct *spi = (SPI_Init_Struct *) handle; // When using STM32 Hal, this can also be SPI_HandleTypeDef
       return SPI_CS_Enable(&spi->CS[cs]) == SPI_RET_OK ? MEMORY_STATUS_OK : MEMORY_STATUS_NOK;
   }
