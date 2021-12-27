@@ -15,7 +15,6 @@
  */
 
 #include <stddef.h>
-#include <stdbool.h>
 #include "cat25256.h"
 
 #define WREN    0b00000110
@@ -235,12 +234,11 @@ cat25256_write_address_unaligned(cat25256_handle_t *handle, uint32_t address, co
 
 memory_status_t
 cat25256_write(cat25256_handle_t *handle, uint32_t address, const uint8_t *data, uint32_t length, size_t cs) {
-    if (length <= PAGE_SIZE) {
+    uint32_t fits = address % PAGE_SIZE + length;
+    if (fits <= PAGE_SIZE) {
         return cat25256_write_page(handle, address, data, length, cs);
+    } else {
+        return cat25256_write_address_unaligned(handle, address, data, length, cs);
     }
-    if (address % PAGE_SIZE == 0) {
-        return cat25256_write_address_aligned(handle, address, data, length, cs);
-    }
-    return cat25256_write_address_unaligned(handle, address, data, length, cs);
 }
 
