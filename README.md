@@ -73,7 +73,7 @@ All you need to do is to set the ``read``, ``write``, ``cs_enable`` and  ``cs_di
    * @param cs The chip select to use
    * @return MEMORY_STATUS_OK on success, MEMORY_STATUS_NOK on failure
    */
-  memory_status_t stm95m_read(cat25256_handle_t *handle, uint32_t address, uint8_t *data, uint32_t length, size_t cs);
+  memory_status_t cat25256_read(cat25256_handle_t *handle, uint32_t address, uint8_t *data, uint32_t length, size_t cs);
   
   /**
    * @brief Writes data to the CAT25256 memory.
@@ -84,7 +84,7 @@ All you need to do is to set the ``read``, ``write``, ``cs_enable`` and  ``cs_di
    * @param cs The chip select to use
    * @return MEMORY_STATUS_OK on success, MEMORY_STATUS_NOK on failure
    */
-  memory_status_t stm95m_write(cat25256_handle_t *handle, uint32_t address, uint8_t *data, uint32_t length, size_t cs);
+  memory_status_t cat25256_write(cat25256_handle_t *handle, uint32_t address, uint8_t *data, uint32_t length, size_t cs);
   
   /**
    * @brief Reads the status register of the CAT25256 memory.
@@ -93,7 +93,7 @@ All you need to do is to set the ``read``, ``write``, ``cs_enable`` and  ``cs_di
    * @param cs The chip select to use
    * @return MEMORY_STATUS_OK on success, MEMORY_STATUS_NOK on failure
    */
-  memory_status_t stm95m_read_register(cat25256_handle_t *handle, uint8_t *data, size_t cs);
+  memory_status_t cat25256_read_register(cat25256_handle_t *handle, uint8_t *data, size_t cs);
   
   /**
    * @brief Writes into the status register of the CAT25256 memory.
@@ -102,7 +102,7 @@ All you need to do is to set the ``read``, ``write``, ``cs_enable`` and  ``cs_di
    * @param cs The chip select to use
    * @return MEMORY_STATUS_OK on success, MEMORY_STATUS_NOK on failure
    */
-  memory_status_t stm95m_write_register(cat25256_handle_t *handle, uint8_t data, size_t cs);
+  memory_status_t cat25256_write_register(cat25256_handle_t *handle, uint8_t data, size_t cs);
   ```
 
   
